@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  VIEWER
+  ANALYST
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum RecordType {
+  INCOME
+  EXPENSE
+}
+
+model User {
+  id          String            @id @default(cuid())
+  name        String
+  email       String            @unique
+  password    String
+  role        Role              @default(VIEWER)
+  status      UserStatus        @default(ACTIVE)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  createdRecords FinancialRecord[] @relation("RecordCreator")
+  updatedRecords FinancialRecord[] @relation("RecordUpdater")
+}
+
+model FinancialRecord {
+  id          String      @id @default(cuid())
+  amount      Float
+  type        RecordType
+  category    String
+  date        DateTime
+  notes       String?
+  isDeleted   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  createdById String
+  updatedById String?
+
+  createdBy   User        @relation("RecordCreator", fields: [createdById], references: [id])
+  updatedBy   User?       @relation("RecordUpdater", fields: [updatedById], references: [id])
+
+  @@index([date])
+  @@index([category])
+  @@index([type])
+}
