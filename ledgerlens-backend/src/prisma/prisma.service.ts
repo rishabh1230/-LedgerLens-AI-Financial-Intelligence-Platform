@@ -1,15 +1,21 @@
-import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common';
+import 'dotenv/config';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
-  async onModuleInit() {
-    await this.$connect();
+  constructor() {
+    const adapter = new PrismaBetterSqlite3({
+      url: process.env.DATABASE_URL!,
+    });
+
+    super({
+      adapter,
+    });
   }
 
-  async enableShutdownHooks(app: INestApplication) {
-    process.on('beforeExit', async () => {
-      await app.close();
-    });
+  async onModuleInit() {
+    await this.$connect();
   }
 }
