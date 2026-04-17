@@ -1,6 +1,6 @@
 # 🔍 LedgerLens — AI Financial Intelligence Platform
 
-LedgerLens is a full-stack, AI-powered financial intelligence and research platform designed to convert complex corporate filings and ledger data into structured, actionable insights.
+LedgerLens is a backend, AI-powered financial intelligence and research platform designed to convert complex corporate filings and ledger data into structured, actionable insights.
 
 It combines **Retrieval-Augmented Generation (RAG)** for intelligent querying with **cryptographic hash chaining** to ensure data integrity.
 
