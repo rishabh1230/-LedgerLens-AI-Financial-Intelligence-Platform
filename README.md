@@ -9,7 +9,7 @@ It combines **Retrieval-Augmented Generation (RAG)** for intelligent querying wi
 ## 🚀 Links
 
 - 💻 Repository  
-https://github.com/rishabh1230/LedgerLens  
+https://github.com/rishabh1230/-LedgerLens-AI-Financial-Intelligence-Platform
 
 ---
 
@@ -86,7 +86,7 @@ D --> L --> M --> N --> O --> P
 
 ## 📦 Installation
 
-### Backend
+### Backend Setup
 
 ```bash
 cd backend
