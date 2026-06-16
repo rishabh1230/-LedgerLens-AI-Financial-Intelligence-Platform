@@ -109,6 +109,7 @@ npm run dev
 ## 🐳 Docker
 
 ```bash
+docker ps
 docker-compose up --build
 ```
 
